@@ -1752,6 +1752,8 @@ void
 handlesig(int signo)
 {
 	if (signo == SIGCHLD) {
+		pid_t pid;
+		int status;
 #ifdef XWAYLAND
 		siginfo_t in;
 		/* wlroots expects to reap the XWayland process itself, so we
@@ -1759,10 +1761,40 @@ handlesig(int signo)
 		 * XWayland.
 		 */
 		while (!waitid(P_ALL, 0, &in, WEXITED|WNOHANG|WNOWAIT) && in.si_pid
-				&& (!xwayland || in.si_pid != xwayland->server->pid))
-			waitpid(in.si_pid, NULL, 0);
+				&& (!xwayland || in.si_pid != xwayland->server->pid)) {
+			pid = in.si_pid;
+			waitpid(pid, &status, 0);
+			
+			/* Update child_pid if the startup command died */
+			if (pid == child_pid)
+				child_pid = -1;
+
+			/* Check if an autostart process died and mark it */
+			if (autostart_pids) {
+				size_t i;
+				for (i = 0; i < autostart_len; i++) {
+					if (autostart_pids[i] == pid) {
+						autostart_pids[i] = -1;
+						break;
+					}
+				}
+			}
+		}
 #else
-		while (waitpid(-1, NULL, WNOHANG) > 0);
+		while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
+			if (pid == child_pid)
+				child_pid = -1;
+			
+			if (autostart_pids) {
+				size_t i;
+				for (i = 0; i < autostart_len; i++) {
+					if (autostart_pids[i] == pid) {
+						autostart_pids[i] = -1;
+						break;
+					}
+				}
+			}
+		}
 #endif
 	} else if (signo == SIGINT || signo == SIGTERM) {
 		quit(NULL);
