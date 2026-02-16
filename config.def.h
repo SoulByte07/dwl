@@ -35,6 +35,16 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
+/* commands to run on startup */
+static const char *const autostart[] = {
+    /* command          args               terminator */
+    "mako",                                       NULL,
+    "swaybg", "-i", "/home/soul/Pictures/wallpapers/Anime-Ladys/anime-lady-orange.png", "-m", "fill", NULL, /* Update path */
+    "dwlb", "-status-stdin",                      NULL,
+    NULL /* terminate */
+};
+
+
 /* monitors */
 /* (x=-1, y=-1) is reserved as an "autoconfigure" monitor position indicator
  * WARNING: negative values other than (-1, -1) cause problems with Xwayland clients due to
