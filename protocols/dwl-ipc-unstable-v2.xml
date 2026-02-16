@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<protocol name="dwl_ipc_unstable_v2">
+  <interface name="zdwl_ipc_manager_v2" version="2">
+    <description summary="manage dwl state">
+      This interface allows clients to monitor and control the state of dwl.
+    </description>
+
+    <request name="release" type="destructor">
+      <description summary="release the manager">
+        Release the manager object.
+      </description>
+    </request>
+
+    <request name="get_output">
+      <description summary="get an output object">
+        Get an output object for a given wl_output.
+      </description>
+      <arg name="id" type="new_id" interface="zdwl_ipc_output_v2"/>
+      <arg name="output" type="object" interface="wl_output"/>
+    </request>
+
+    <event name="tags">
+      <description summary="advertise the number of tags">
+        Sent immediately after binding. Advertises the number of tags.
+      </description>
+      <arg name="count" type="uint"/>
+    </event>
+
+    <event name="layout">
+      <description summary="advertise a layout">
+        Sent immediately after binding. Advertises a supported layout.
+      </description>
+      <arg name="name" type="string"/>
+    </event>
+  </interface>
+
+  <interface name="zdwl_ipc_output_v2" version="2">
+    <description summary="control a dwl output">
+      This interface allows clients to monitor and control the state of a single dwl output.
+    </description>
+
+    <request name="release" type="destructor">
+      <description summary="release the output">
+        Release the output object.
+      </description>
+    </request>
+
+    <request name="set_tags">
+      <description summary="set the tags">
+        Set the tags of the output.
+      </description>
+      <arg name="tagmask" type="uint"/>
+      <arg name="toggle_tagset" type="uint"/>
+    </request>
+
+    <request name="set_layout">
+      <description summary="set the layout">
+        Set the layout of the output.
+      </description>
+      <arg name="index" type="uint"/>
+    </request>
+
+    <request name="set_client_tags">
+      <description summary="set the tags of the focused client">
+        Set the tags of the focused client.
+      </description>
+      <arg name="and_tags" type="uint"/>
+      <arg name="xor_tags" type="uint"/>
+    </request>
+
+    <event name="toggle_visibility">
+        <description summary="toggle the visibility of the bar">
+            Event sent to the client to toggle the visibility of the bar.
+        </description>
+    </event>
+
+    <event name="active">
+      <description summary="advertise the active state">
+        Sent when the output becomes active or inactive.
+      </description>
+      <arg name="active" type="uint"/>
+    </event>
+
+    <enum name="tag_state">
+      <entry name="none" value="0"/>
+      <entry name="active" value="1"/>
+      <entry name="urgent" value="2"/>
+    </enum>
+
+    <event name="tag">
+      <description summary="advertise a tag state">
+        Sent when a tag state changes.
+      </description>
+      <arg name="tag" type="uint"/>
+      <arg name="state" type="uint" enum="tag_state"/>
+      <arg name="clients" type="uint"/>
+      <arg name="focused" type="uint"/>
+    </event>
+
+    <event name="layout">
+      <description summary="advertise the layout">
+        Sent when the layout changes.
+      </description>
+      <arg name="layout" type="uint"/>
+    </event>
+
+    <event name="title">
+      <description summary="advertise the title">
+        Sent when the focused client title changes.
+      </description>
+      <arg name="title" type="string"/>
+    </event>
+
+    <event name="appid">
+      <description summary="advertise the appid">
+        Sent when the focused client appid changes.
+      </description>
+      <arg name="appid" type="string"/>
+    </event>
+
+    <event name="layout_symbol">
+      <description summary="advertise the layout symbol">
+        Sent when the layout symbol changes.
+      </description>
+      <arg name="layout" type="string"/>
+    </event>
+
+    <event name="frame">
+      <description summary="frame">
+        Sent after a group of events to indicate that the state is consistent.
+      </description>
+    </event>
+    
+    <event name="fullscreen" since="2">
+      <description summary="advertise the fullscreen state">
+        Sent when the focused client fullscreen state changes.
+      </description>
+      <arg name="is_fullscreen" type="uint"/>
+    </event>
+
+    <event name="floating" since="2">
+      <description summary="advertise the floating state">
+        Sent when the focused client floating state changes.
+      </description>
+      <arg name="is_floating" type="uint"/>
+    </event>
+  </interface>
+</protocol>
