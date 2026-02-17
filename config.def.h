@@ -40,7 +40,7 @@ static const char *const autostart[] = {
     /* command          args               terminator */
     "mako",                                       NULL,
     "swaybg", "-i", "/home/soul/Pictures/wallpapers/Anime-Ladys/anime-lady-orange.png", "-m", "fill", NULL, /* Update path */
-    "dwlb", "-status-stdin",                      NULL,
+    "dwlb", "-ipc",                      NULL,
     NULL /* terminate */
 };
 
