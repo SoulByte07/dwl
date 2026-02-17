@@ -1,0 +1,55 @@
+--- dwl.c
++++ dwl.c
+@@ -720,12 +745,23 @@ checkidleinhibitor(struct wlr_surface *exclude)
+ void
+ cleanup(void)
+ {
++	size_t i;
++
+ 	cleanuplisteners();
+ #ifdef XWAYLAND
+ 	wlr_xwayland_destroy(xwayland);
+ 	xwayland = NULL;
+ #endif
+ 	wl_display_destroy_clients(dpy);
++
++	/* kill child processes */
++	for (i = 0; i < autostart_len; i++) {
++		if (0 < autostart_pids[i]) {
++			kill(autostart_pids[i], SIGTERM);
++			waitpid(autostart_pids[i], NULL, 0);
++		}
++	}
++
+ 	if (child_pid > 0) {
+ 		kill(-child_pid, SIGTERM);
+ 		waitpid(child_pid, NULL, 0);
+@@ -1576,10 +1612,25 @@ gpureset(struct wl_listener *listener, void *data)
+ void
+ handlesig(int signo)
+ {
+-	if (signo == SIGCHLD)
+-		while (waitpid(-1, NULL, WNOHANG) > 0);
+-	else if (signo == SIGINT || signo == SIGTERM)
++	if (signo == SIGCHLD) {
++		pid_t pid, *p, *lim;
++		while ((pid = waitpid(-1, NULL, WNOHANG)) > 0) {
++			if (pid == child_pid)
++				child_pid = -1;
++			if (!(p = autostart_pids))
++				continue;
++			lim = &p[autostart_len];
++
++			for (; p < lim; p++) {
++				if (*p == pid) {
++					*p = -1;
++					break;
++				}
++			}
++		}
++	} else if (signo == SIGINT || signo == SIGTERM) {
+ 		quit(NULL);
++	}
+ }
+ 
+ void
