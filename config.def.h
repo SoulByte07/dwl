@@ -123,10 +123,13 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define CTRL_ALT (WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT)
 
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
+static const char *nightmodetoggle[] = { "/home/soul/.local/bin/DWL/toggle-nightmode", NULL };
+static const char *powermenu[] = { "/home/soul/.local/bin/DWL/powermenu.sh", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: 2 -> at, etc. */
@@ -135,6 +138,8 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_Return,      spawn,            {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_j,           focusstack,       {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,           focusstack,       {.i = -1} },
+  { MODKEY,                    XKB_KEY_n,           spawn,            {.v = nightmodetoggle} },
+  { CTRL_ALT,                  XKB_KEY_p,           spawn,            {.v = powermenu} },
 	{ MODKEY,                    XKB_KEY_i,           incnmaster,       {.i = +1} },
 	{ MODKEY,                    XKB_KEY_d,           incnmaster,       {.i = -1} },
 	{ MODKEY,                    XKB_KEY_h,           setmfact,         {.f = -0.05f} },
