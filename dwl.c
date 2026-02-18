@@ -1201,6 +1201,13 @@ createpointer(struct wlr_pointer *pointer)
 		}
 	}
 
+    /* Add this block to disable natural scrolling */
+    if (libinput_device_config_scroll_has_natural_scroll(device)) {
+        libinput_device_config_scroll_set_natural_scroll_enabled(device, 0); 
+        /* 0 = Standard Scrolling (Down is Down) */
+        /* 1 = Natural Scrolling (Phone style) */
+    }
+
 	wlr_cursor_attach_input_device(cursor, &pointer->base);
 }
 
