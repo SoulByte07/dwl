@@ -177,6 +177,8 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *powermenu[] = { "/home/soul/.local/bin/DWL/powermenu.sh", NULL };
+static const char *brupcmd[]   = { "brightnessctl", "set", "5%+", NULL };
+static const char *brdowncmd[] = { "brightnessctl", "set", "5%-", NULL };
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
 static const char *screenshotcmd[] = {"/run/current-system/sw/bin/snip", NULL };
@@ -199,6 +201,8 @@ static const Key keys[] = {
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
   { CTRL_ALT,                  XKB_KEY_p,           spawn,            {.v = powermenu} },
+  { 0,                         XF86XK_MonBrightnessUp,     spawn,     {.v = brupcmd} },
+  { 0,                         XF86XK_MonBrightnessDown,   spawn,     {.v = brdowncmd} },
 	{ MODKEY,                    XKB_KEY_d,          spawn,          {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_Return,     spawn,          {.v = termcmd} },
   { WLR_MODIFIER_CTRL,         XKB_KEY_F12,        spawn,          {.v = snip} },
