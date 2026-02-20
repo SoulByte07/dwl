@@ -12,7 +12,7 @@ static const unsigned int gappx            = 3; /* gap pixel between windows */
 static const unsigned int borderpx         = 0;  /* border pixel of windows */
 static const int showbar                   = 1; /* 0 means no bar */
 static const int topbar                    = 1; /* 0 means bottom bar */
-static const char *fonts[]                 = {"JetBrainsMono Nerd Font Mono:style=Bold:size=16"};
+static const char *fonts[]                 = {"FiraCode Nerd Font Mono:style=Bold:size=16"};
 static const float rootcolor[]             = COLOR(0x000000ff);
 
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
@@ -171,9 +171,14 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+/* Key Strocks */
+#define CTRL_ALT (WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT)
+
+
 /* commands */
+static const char *powermenu[] = { "/home/soul/.local/bin/DWL/powermenu.sh", NULL };
 static const char *termcmd[] = { "foot", NULL };
-static const char *menucmd[] = { "wmenu-run", NULL };
+static const char *menucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
 static const char *screenshotcmd[] = {"/run/current-system/sw/bin/snip", NULL };
 static const char *snip[] = {"$HOME/scripts/snip.sh", NULL };
 static const char *bemenucmd[] = {
@@ -193,13 +198,14 @@ static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
-	{ MODKEY,                    XKB_KEY_d,          spawn,          {.v = wmenucmd} },
+  { CTRL_ALT,                  XKB_KEY_p,           spawn,            {.v = powermenu} },
+	{ MODKEY,                    XKB_KEY_d,          spawn,          {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_Return,     spawn,          {.v = termcmd} },
-    { WLR_MODIFIER_CTRL,         XKB_KEY_F12,        spawn,          {.v = snip} },
+  { WLR_MODIFIER_CTRL,         XKB_KEY_F12,        spawn,          {.v = snip} },
 	{ MODKEY,                    XKB_KEY_s,          spawn,          SHCMD("/home/tony/scripts/snip.sh") },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
-    { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          SHCMD("geom=\"$(slurp -f '%x,%y %wx%h')\"; grim -l 0 -g \"$geom\" - | wl-copy") },
+  { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          SHCMD("geom=\"$(slurp -f '%x,%y %wx%h')\"; grim -l 0 -g \"$geom\" - | wl-copy") },
 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },
 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_p,          incnmaster,     {.i = -1} },
