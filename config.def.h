@@ -110,7 +110,7 @@ static const struct xkb_rule_names xkb_rules = {
 	/* example:
 	.options = "ctrl:nocaps",
 	*/
-	.options = NULL,
+	.options = "numpad:mac", /* Forces NumLock behavior by default */
 };
 
 static const int repeat_rate = 35;
