@@ -178,6 +178,8 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *nightmodecmd[] = { "/home/soul/.local/bin/DWL/toggle-nightmode.sh", NULL };
 static const char *powermenu[] = { "/home/soul/.local/bin/DWL/powermenu.sh", NULL };
+static const char *brupcmd[]   = { "brightnessctl", "set", "5%+", NULL };
+static const char *brdowncmd[] = { "brightnessctl", "set", "5%-", NULL };
 static const char *clipcmd[] = { "/home/soul/.local/bin/DWL/clipmenu.sh", NULL };
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
@@ -200,7 +202,9 @@ static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
-  { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
+  { CTRL_ALT,                  XKB_KEY_p,           spawn,            {.v = powermenu} },
+  { 0,                         XF86XK_MonBrightnessUp,     spawn,     {.v = brupcmd} },
+  { 0,                         XF86XK_MonBrightnessDown,   spawn,     {.v = brdowncmd} },
   { MODKEY,                    XKB_KEY_n,          spawn,          {.v = nightmodecmd} },
   { WLR_MODIFIER_LOGO,         XKB_KEY_v,          spawn,          {.v = clipcmd} },
 	{ MODKEY,                    XKB_KEY_d,          spawn,          {.v = menucmd} },

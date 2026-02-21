@@ -1,3 +1,4 @@
+#include <X11/XF86keysym.h>
 #include <getopt.h>
 #include <libinput.h>
 #include <linux/input-event-codes.h>
