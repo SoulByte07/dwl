@@ -219,6 +219,9 @@ static const Key keys[] = {
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
   { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
+  { MODKEY,                    XF86XK_AudioRaiseVolume, spawn,     SHCMD("pamixer -i 5") },
+  { MODKEY,                    XF86XK_AudioLowerVolume, spawn,     SHCMD("pamixer -d 5") },
+  { MODKEY,                    XF86XK_AudioMute,        spawn,     SHCMD("pamixer -t") },
   { 0,                         XKB_KEY_Print,      spawn,          {.v = screenshotcmd} },
   { 0,                         XF86XK_MonBrightnessUp,     spawn,  {.v = brupcmd} },
   { 0,                         XF86XK_MonBrightnessDown,   spawn,  {.v = brdowncmd} },
