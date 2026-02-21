@@ -191,6 +191,9 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 
 /* commands */
+static const char *volupcmd[]   = { "/home/soul/.local/bin/DWL/volume_notify.sh", "up", NULL };
+static const char *voldowncmd[] = { "/home/soul/.local/bin/DWL/volume_notify.sh", "down", NULL };
+static const char *volmutecmd[] = { "/home/soul/.local/bin/DWL/volume_notify.sh", "mute", NULL };
 static const char *nightmodecmd[] = { "/home/soul/.local/bin/DWL/toggle-nightmode.sh", NULL };
 static const char *screenshotcmd[] = { "/home/soul/.local/bin/DWL/screenshot.sh", NULL };
 static const char *powermenu[] = { "/home/soul/.local/bin/DWL/powermenu.sh", NULL };
@@ -219,9 +222,9 @@ static const Key keys[] = {
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
   { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
-  { MODKEY,                    XF86XK_AudioRaiseVolume, spawn,     SHCMD("pamixer -i 5") },
-  { MODKEY,                    XF86XK_AudioLowerVolume, spawn,     SHCMD("pamixer -d 5") },
-  { MODKEY,                    XF86XK_AudioMute,        spawn,     SHCMD("pamixer -t") },
+  { 0,                         XKB_KEY_XF86AudioRaiseVolume, spawn,{.v = volupcmd} },
+  { 0,                         XKB_KEY_XF86AudioLowerVolume, spawn,{.v = voldowncmd} },
+  { 0,                         XKB_KEY_XF86AudioMute,        spawn,{.v = volmutecmd} },
   { 0,                         XKB_KEY_Print,      spawn,          {.v = screenshotcmd} },
   { 0,                         XF86XK_MonBrightnessUp,     spawn,  {.v = brupcmd} },
   { 0,                         XF86XK_MonBrightnessDown,   spawn,  {.v = brdowncmd} },
