@@ -26,16 +26,31 @@ static const uint32_t col_gray4 = 0xeeeeeeff;
 static const uint32_t col_cyan  = 0x4d6a8eff;
 
 /* TokyoNight colors (0xRRGGBBAA) */
-static const uint32_t col_bg    = 0x1a1b26ff; /* background */
-static const uint32_t col_fg    = 0xa9b1d6ff; /* foreground */
-static const uint32_t col_blk   = 0x32344aff; /* black (normal) */
-static const uint32_t col_red   = 0xf7768eff; /* red */
-static const uint32_t col_grn   = 0x9ece6aff; /* green */
-static const uint32_t col_ylw   = 0xe0af68ff; /* yellow */
-static const uint32_t col_blu   = 0x7aa2f7ff; /* blue */
-static const uint32_t col_mag   = 0xad8ee6ff; /* magenta */
-static const uint32_t col_cyn   = 0x0db9d7ff; /* cyan (highlight) */
-static const uint32_t col_brblk = 0x444b6aff; /* bright black */
+//static const uint32_t col_bg    = 0x1a1b26ff; /* background */
+//static const uint32_t col_fg    = 0xa9b1d6ff; /* foreground */
+//static const uint32_t col_blk   = 0x32344aff; /* black (normal) */
+//static const uint32_t col_red   = 0xf7768eff; /* red */
+//static const uint32_t col_grn   = 0x9ece6aff; /* green */
+//static const uint32_t col_ylw   = 0xe0af68ff; /* yellow */
+//static const uint32_t col_blu   = 0x7aa2f7ff; /* blue */
+//static const uint32_t col_mag   = 0xad8ee6ff; /* magenta */
+//static const uint32_t col_cyn   = 0x0db9d7ff; /* cyan (highlight) */
+//static const uint32_t col_brblk = 0x444b6aff; /* bright black */
+
+
+/* Catppuccin Mocha colors (0xRRGGBBAA) */
+static const uint32_t col_bg    = 0x1e1e2eff; /* background (Base) */
+static const uint32_t col_fg    = 0xcdd6f4ff; /* foreground (Text) */
+static const uint32_t col_blk   = 0x313244ff; /* black (normal - Surface 1) */
+static const uint32_t col_red   = 0xf38ba8ff; /* red */
+static const uint32_t col_grn   = 0xa6e3a1ff; /* green */
+static const uint32_t col_ylw   = 0xf9e2afff; /* yellow */
+static const uint32_t col_blu   = 0x89b4faff; /* blue */
+static const uint32_t col_mag   = 0xcba6f7ff; /* magenta (Mauve) */
+static const uint32_t col_cyn   = 0x89dcebff; /* cyan (highlight - Sky) */
+static const uint32_t col_brblk = 0x585b70ff; /* bright black (Surface 2) */
+
+
 
 // ANSI 16-color table for SGR (0..7 normal, 8..15 bright)
 static const uint32_t barcolors[16] = {
@@ -177,13 +192,14 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *nightmodecmd[] = { "/home/soul/.local/bin/DWL/toggle-nightmode.sh", NULL };
+static const char *screenshotcmd[] = { "/home/soul/.local/bin/DWL/screenshot.sh", NULL };
 static const char *powermenu[] = { "/home/soul/.local/bin/DWL/powermenu.sh", NULL };
-static const char *brupcmd[]   = { "brightnessctl", "set", "5%+", NULL };
-static const char *brdowncmd[] = { "brightnessctl", "set", "5%-", NULL };
+static const char *brupcmd[]   = { "brightnessctl", "set", "3%+", NULL };
+static const char *brdowncmd[] = { "brightnessctl", "set", "3%-", NULL };
 static const char *clipcmd[] = { "/home/soul/.local/bin/DWL/clipmenu.sh", NULL };
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
-static const char *screenshotcmd[] = {"/run/current-system/sw/bin/snip", NULL };
+//static const char *screenshotcmd[] = {"/run/current-system/sw/bin/snip", NULL };
 static const char *snip[] = {"$HOME/scripts/snip.sh", NULL };
 static const char *bemenucmd[] = {
     "bemenu-run",
@@ -202,9 +218,10 @@ static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
-  { CTRL_ALT,                  XKB_KEY_p,           spawn,            {.v = powermenu} },
-  { 0,                         XF86XK_MonBrightnessUp,     spawn,     {.v = brupcmd} },
-  { 0,                         XF86XK_MonBrightnessDown,   spawn,     {.v = brdowncmd} },
+  { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
+  { 0,                         XKB_KEY_Print,      spawn,          {.v = screenshotcmd} },
+  { 0,                         XF86XK_MonBrightnessUp,     spawn,  {.v = brupcmd} },
+  { 0,                         XF86XK_MonBrightnessDown,   spawn,  {.v = brdowncmd} },
   { MODKEY,                    XKB_KEY_n,          spawn,          {.v = nightmodecmd} },
   { WLR_MODIFIER_LOGO,         XKB_KEY_v,          spawn,          {.v = clipcmd} },
 	{ MODKEY,                    XKB_KEY_d,          spawn,          {.v = menucmd} },
