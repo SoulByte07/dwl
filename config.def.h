@@ -176,6 +176,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 
 /* commands */
+static const char *nightmodecmd[] = { "/home/soul/.local/bin/DWL/toggle-nightmode.sh", NULL };
 static const char *powermenu[] = { "/home/soul/.local/bin/DWL/powermenu.sh", NULL };
 static const char *clipcmd[] = { "/home/soul/.local/bin/DWL/clipmenu.sh", NULL };
 static const char *termcmd[] = { "foot", NULL };
@@ -200,6 +201,7 @@ static const Key keys[] = {
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
   { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
+  { MODKEY,                    XKB_KEY_n,          spawn,          {.v = nightmodecmd} },
   { WLR_MODIFIER_LOGO,         XKB_KEY_v,          spawn,          {.v = clipcmd} },
 	{ MODKEY,                    XKB_KEY_d,          spawn,          {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_Return,     spawn,          {.v = termcmd} },
