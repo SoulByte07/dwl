@@ -1767,7 +1767,7 @@ drawbar(Monitor *m)
 	if ((w = m->b.width - tw - x) > m->b.height) {
 		if (c) {
 			drwl_setscheme(m->drw, colors[m == selmon ? SchemeSel : SchemeNorm]);
-			drwl_text(m->drw, x, 0, w, m->b.height, m->lrpad / 2, client_get_title(c), 0);
+			//drwl_text(m->drw, x, 0, w, m->b.height, m->lrpad / 2, client_get_title(c), 0);
 		} else {
 			drwl_setscheme(m->drw, colors[SchemeNorm]);
 		}
