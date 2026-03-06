@@ -128,8 +128,8 @@ static const struct xkb_rule_names xkb_rules = {
 	.options = "numpad:mac", /* Forces NumLock behavior by default */
 };
 
-static const int repeat_rate = 35;
-static const int repeat_delay = 200;
+static const int repeat_rate = 50;
+static const int repeat_delay = 300;
 
 /* Trackpad */
 static const int tap_to_click = 1;
@@ -203,6 +203,7 @@ static const char *brdowncmd[] = { "/home/soul/.local/bin/DWL/brightness-ctrl-no
 static const char *clipcmd[] = { "/home/soul/.local/bin/DWL/clipmenu.sh", NULL };
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
+//static const char *menucmd[] = { "fuzzel", "--launcher-xdg", NULL };
 //static const char *screenshotcmd[] = {"/run/current-system/sw/bin/snip", NULL };
 static const char *snip[] = {"$HOME/scripts/snip.sh", NULL };
 static const char *bemenucmd[] = {
@@ -229,22 +230,22 @@ static const Key keys[] = {
   { 0,                         XKB_KEY_Print,      spawn,          {.v = screenshotcmd} },
   { 0,                         XF86XK_MonBrightnessUp,     spawn,  {.v = brupcmd} },
   { 0,                         XF86XK_MonBrightnessDown,   spawn,  {.v = brdowncmd} },
-  { MODKEY,                    XKB_KEY_n,          spawn,          {.v = nightmodecmd} },
+//  { MODKEY,                    XKB_KEY_n,          spawn,          {.v = nightmodecmd} },
   { MODKEY,                    XKB_KEY_s,          spawn,          {.v = mastertoolscmd} },
   { WLR_MODIFIER_LOGO,         XKB_KEY_v,          spawn,          {.v = clipcmd} },
 	{ MODKEY,                    XKB_KEY_d,          spawn,          {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_Return,     spawn,          {.v = termcmd} },
-  { WLR_MODIFIER_CTRL,         XKB_KEY_F12,        spawn,          {.v = snip} },
-	{ MODKEY,                    XKB_KEY_s,          spawn,          SHCMD("/home/tony/scripts/snip.sh") },
+ //   { WLR_MODIFIER_CTRL,         XKB_KEY_F12,        spawn,          {.v = snip} },
+ // 	{ MODKEY,                    XKB_KEY_s,          spawn,          SHCMD("/home/tony/scripts/snip.sh") },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
-  { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          SHCMD("geom=\"$(slurp -f '%x,%y %wx%h')\"; grim -l 0 -g \"$geom\" - | wl-copy") },
+//  { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          SHCMD("geom=\"$(slurp -f '%x,%y %wx%h')\"; grim -l 0 -g \"$geom\" - | wl-copy") },
 	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0} },
 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_p,          incnmaster,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_h,          setmfact,       {.f = -0.05f} },
 	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05f} },
-	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
+	{ MODKEY,                    XKB_KEY_z,          zoom,           {0} },
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
 	{ MODKEY,                    XKB_KEY_a,          togglegaps,     {0} },
 	{ MODKEY,                    XKB_KEY_q,          killclient,     {0} },
@@ -253,7 +254,7 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,      togglefloating, {0} },
-	{ MODKEY,                    XKB_KEY_e,         togglefullscreen, {0} },
+	{ MODKEY,                    XKB_KEY_e,          togglefullscreen, {0} },
 	{ MODKEY,                    XKB_KEY_0,          view,           {.ui = ~0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_parenright, tag,            {.ui = ~0} },
 	{ MODKEY,                    XKB_KEY_comma,      focusmon,       {.i = WLR_DIRECTION_LEFT} },
