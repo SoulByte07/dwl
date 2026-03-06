@@ -192,6 +192,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *volupcmd[]   = { "/home/soul/.local/bin/DWL/volume_notify.sh", "up", NULL };
+static const char *touchpadtoggle[]   = { "/home/soul/.local/bin/Tools/Arch/arch-touchpad-toggle.sh", NULL };
 static const char *voldowncmd[] = { "/home/soul/.local/bin/DWL/volume_notify.sh", "down", NULL };
 static const char *volmutecmd[] = { "/home/soul/.local/bin/DWL/volume_notify.sh", "mute", NULL };
 static const char *nightmodecmd[] = { "/home/soul/.local/bin/DWL/toggle-nightmode.sh", NULL };
@@ -223,6 +224,7 @@ static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
+  { MODKEY,                    XKB_KEY_t,          spawn,          {.v = touchpadtoggle} },
   { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
   { 0,                         XKB_KEY_XF86AudioRaiseVolume, spawn,{.v = volupcmd} },
   { 0,                         XKB_KEY_XF86AudioLowerVolume, spawn,{.v = voldowncmd} },
