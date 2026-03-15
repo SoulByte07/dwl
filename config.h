@@ -192,11 +192,13 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *volupcmd[]   = { "/home/soul/.local/bin/DWL/volume_notify.sh", "up", NULL };
+static const char *bookmarkmenu[]   = { "/home/soul/.local/bin/Tools/Arch/bookmarks-menu.sh",  NULL };
+static const char *tmuxsessionrofi[]   = { "/home/soul/.local/bin/Tools/Arch/tmux-session-selector-rofi.sh", NULL };
 static const char *touchpadtoggle[]   = { "/home/soul/.local/bin/Tools/Arch/arch-touchpad-toggle.sh", NULL };
 static const char *voldowncmd[] = { "/home/soul/.local/bin/DWL/volume_notify.sh", "down", NULL };
 static const char *volmutecmd[] = { "/home/soul/.local/bin/DWL/volume_notify.sh", "mute", NULL };
 static const char *nightmodecmd[] = { "/home/soul/.local/bin/DWL/toggle-nightmode.sh", NULL };
-static const char *screenshotcmd[] = { "/home/soul/.local/bin/DWL/screenshot.sh", NULL };
+static const char *screenshotcmd[] = { "/home/soul/.local/bin/Tools/Arch/screenshot.sh", NULL };
 static const char *powermenu[] = { "/home/soul/.local/bin/DWL/powermenu.sh", NULL };
 static const char *mastertoolscmd[] = { "/home/soul/.local/bin/tools-manager.sh", NULL };
 static const char *brupcmd[]   = { "/home/soul/.local/bin/DWL/brightness-ctrl-notify.sh", "up", NULL };
@@ -225,6 +227,8 @@ static const Key keys[] = {
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
   { MODKEY,                    XKB_KEY_t,          spawn,          {.v = touchpadtoggle} },
+  { MODKEY,                    XKB_KEY_m,          spawn,          {.v = bookmarkmenu} },
+  { MODKEY,                    XKB_KEY_p,          spawn,          {.v = tmuxsessionrofi} },
   { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
   { 0,                         XKB_KEY_XF86AudioRaiseVolume, spawn,{.v = volupcmd} },
   { 0,                         XKB_KEY_XF86AudioLowerVolume, spawn,{.v = voldowncmd} },
@@ -272,7 +276,7 @@ static const Key keys[] = {
 	TAGKEYS(          XKB_KEY_7, XKB_KEY_ampersand,                  6),
 	TAGKEYS(          XKB_KEY_8, XKB_KEY_asterisk,                   7),
 	TAGKEYS(          XKB_KEY_9, XKB_KEY_parenleft,                  8),
-	//{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Q,          quit,           {0} },
+	{ CTRL_ALT,                  XKB_KEY_Q,          quit,           {0} },
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
