@@ -205,8 +205,8 @@ static const char *brupcmd[]   = { "/home/soul/.local/bin/DWL/brightness-ctrl-no
 static const char *brdowncmd[] = { "/home/soul/.local/bin/DWL/brightness-ctrl-notify.sh", "down", NULL };
 static const char *clipcmd[] = { "/home/soul/.local/bin/DWL/clipmenu.sh", NULL };
 static const char *termcmd[] = { "foot", NULL };
-static const char *menucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
-//static const char *menucmd[] = { "fuzzel", "--launcher-xdg", NULL };
+//static const char *menucmd[] = { "tofi-drun", "--drun-launch=true", NULL };
+static const char *menucmd[] = { "fuzzel", NULL }
 //static const char *screenshotcmd[] = {"/run/current-system/sw/bin/snip", NULL };
 static const char *snip[] = {"$HOME/scripts/snip.sh", NULL };
 static const char *bemenucmd[] = {
