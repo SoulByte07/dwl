@@ -94,6 +94,7 @@ static const Rule rules[] = {
 	/* examples: */
 	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
 	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
+  { "floating_cheat",   NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -192,6 +193,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *bookmarkmenu[]   = { "/home/soul/.local/bin/Tools/Arch/bookmarks-menu.sh",  NULL };
+static const char *tvcheatsheet[] = { "foot", "-a", "floating_cheat", "-w", "900x600", "/home/soul/.local/bin/Tools/Arch/tv-cheat-sheet.sh", NULL };
 static const char *tmuxsessionrofi[]   = { "/home/soul/.local/bin/Tools/Arch/tmux-session-selector-rofi.sh", NULL };
 static const char *touchpadtoggle[]   = { "/home/soul/.local/bin/Tools/Arch/arch-touchpad-toggle.sh", NULL };
 static const char *volupcmd[]   = { "/home/soul/.config/dwl/Scripts/volume_notify.sh", "up", NULL };
@@ -226,6 +228,7 @@ static const Key keys[] = {
 	/* modifier                  key                 function        argument */
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
   { MODKEY,                    XKB_KEY_t,          spawn,          {.v = touchpadtoggle} },
+  { MODKEY,                    XKB_KEY_c,          spawn,          {.v = tvcheatsheet} },
   { MODKEY,                    XKB_KEY_m,          spawn,          {.v = bookmarkmenu} },
   { MODKEY,                    XKB_KEY_p,          spawn,          {.v = tmuxsessionrofi} },
   { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
