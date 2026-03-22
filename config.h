@@ -192,17 +192,17 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 
 /* commands */
-static const char *bookmarkmenu[]   = { "/home/soul/.local/bin/Tools/Arch/bookmarks-menu.sh",  NULL };
-static const char *tvcheatsheet[] = { "foot", "-a", "floating_cheat", "-w", "900x600", "/home/soul/.local/bin/Tools/Arch/tv-cheat-sheet.sh", NULL };
-static const char *tmuxsessionrofi[]   = { "/home/soul/.local/bin/Tools/Arch/tmux-session-selector-rofi.sh", NULL };
-static const char *touchpadtoggle[]   = { "/home/soul/.local/bin/Tools/Arch/arch-touchpad-toggle.sh", NULL };
+static const char *bookmarkmenu[]   = { "/home/soul/.config/dwl/Scripts/bookmarks-menu.sh",  NULL };
+static const char *tvcheatsheet[] = { "foot", "-a", "floating_cheat", "-w", "900x600", "/home/soul/.config/dwl/Scripts/tv-cheat-sheet.sh", NULL };
+static const char *tmuxsessionrofi[]   = { "/home/soul/.config/dwl/Scripts/tmux-session-selector-rofi.sh", NULL };
+static const char *touchpadtoggle[]   = { "/home/soul/.config/dwl/Scripts/arch-touchpad-toggle.sh", NULL };
 static const char *volupcmd[]   = { "/home/soul/.config/dwl/Scripts/volume_notify.sh", "up", NULL };
 static const char *voldowncmd[] = { "/home/soul/.config/dwl/Scripts/volume_notify.sh", "down", NULL };
 static const char *volmutecmd[] = { "/home/soul/.config/dwl/Scripts/volume_notify.sh", "mute", NULL };
 static const char *nightmodecmd[] = { "/home/soul/.config/dwl/Scripts/toggle-nightmode.sh", NULL };
-static const char *screenshotcmd[] = { "/home/soul/.local/bin/Tools/Arch/screenshot.sh", NULL };
+static const char *screenshotcmd[] = { "/home/soul/.config/dwl/Scripts/screenshot.sh", NULL };
 static const char *powermenu[] = { "/home/soul/.config/dwl/Scripts/powermenu.sh", NULL };
-static const char *mastertoolscmd[] = { "/home/soul/.local/bin/tools-manager.sh", NULL };
+static const char *mastertoolscmd[] = { "/home/soul/.config/dwl/Scripts/tools-manager.sh", NULL };
 static const char *brupcmd[]   = { "/home/soul/.config/dwl/Scripts/brightness-ctrl-notify.sh", "up", NULL };
 static const char *brdowncmd[] = { "/home/soul/.config/dwl/Scripts/brightness-ctrl-notify.sh", "down", NULL };
 static const char *clipcmd[] = { "/home/soul/.config/dwl/Scripts/clipmenu.sh", NULL };
