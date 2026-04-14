@@ -94,7 +94,7 @@ static const Rule rules[] = {
 	/* examples: */
 	{ "Gimp_EXAMPLE",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
 	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
-  { "floating_cheat",   NULL,       0,            1,           -1 },
+  { "floating_top_left_1by4",NULL,  0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -167,7 +167,7 @@ LIBINPUT_CONFIG_ACCEL_PROFILE_FLAT
 LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE
 */
 static const enum libinput_config_accel_profile accel_profile = LIBINPUT_CONFIG_ACCEL_PROFILE_ADAPTIVE;
-static const double accel_speed = 0.0;
+static const double accel_speed = 0.8;
 
 /* You can choose between:
 LIBINPUT_CONFIG_TAP_MAP_LRM -- 1/2/3 finger tap maps to left/right/middle
@@ -193,7 +193,10 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *bookmarkmenu[]   = { "/home/soul/.config/dwl/Scripts/bookmarks-menu.sh",  NULL };
-static const char *tvcheatsheet[] = { "foot", "-a", "floating_cheat", "-w", "900x600", "/home/soul/.config/dwl/Scripts/tv-cheat-sheet.sh", NULL };
+static const char *tvcheatsheet[] = { "foot", "-a", "floating_top_left_1by4", "-w", "900x600", "/home/soul/.config/dwl/Scripts/tv-cheat-sheet.sh", NULL };
+// static const char *snippetsinsert[] = { "foot", "-H", "-a", "floating_top_left_1by4", "-w", "900x600", "/home/soul/.config/dwl/Scripts/snippets-insert.sh", NULL };
+// static const char *snippetsinsert[] = { "foot", "-a", "floating_top_left_1by4", "-W", "900x600", "bash", "-c", "/home/soul/.config/dwl/Scripts/snippets-insert.sh", NULL };
+static const char *snippetsinsert[] = { "foot", "-a", "floating_top_left_1by4", "-w", "900x600", "bash", "-c", "/home/soul/.config/dwl/Scripts/snippets-insert.sh", NULL };
 static const char *tmuxsessionrofi[]   = { "/home/soul/.config/dwl/Scripts/tmux-session-selector-rofi.sh", NULL };
 static const char *touchpadtoggle[]   = { "/home/soul/.config/dwl/Scripts/arch-touchpad-toggle.sh", NULL };
 static const char *volupcmd[]   = { "/home/soul/.config/dwl/Scripts/volume_notify.sh", "up", NULL };
@@ -229,6 +232,7 @@ static const Key keys[] = {
 	// { MODKEY,                    XKB_KEY_d,          spawn,          {.v = bemenucmd} },
   { MODKEY,                    XKB_KEY_t,          spawn,          {.v = touchpadtoggle} },
   { MODKEY,                    XKB_KEY_c,          spawn,          {.v = tvcheatsheet} },
+  { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_S,          spawn,          {.v = snippetsinsert} },
   { MODKEY,                    XKB_KEY_m,          spawn,          {.v = bookmarkmenu} },
   { MODKEY,                    XKB_KEY_p,          spawn,          {.v = tmuxsessionrofi} },
   { CTRL_ALT,                  XKB_KEY_p,          spawn,          {.v = powermenu} },
