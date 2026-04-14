@@ -546,17 +546,17 @@ applyrules(Client *c)
 
 	c->isfloating |= client_is_float_type(c);
 	setmon(c, mon, newtags);
-/* --- D2 IMV CUSTOM OVERRIDE --- */
-	// const char *appid = client_get_appid(c);
+/* --- D2 IMV floating center --- */
 	if (appid && !strcmp(appid, "imv")) {
-		int custom_w = 800; /* Set your custom width here */
-		int custom_h = 600; /* Set your custom height here */
+		/* Use 'const' so the compiler optimizes these into raw machine instructions */
+		const int custom_w = 1700; 
+		const int custom_h = 900; 
 		
-		/* Calculate true center based on your active monitor */
+		/* Calculate center coordinates */
 		int center_x = selmon->m.x + (selmon->m.width - custom_w) / 2;
 		int center_y = selmon->m.y + (selmon->m.height - custom_h) / 2;
 		
-		/* Force the compositor to resize and move the window */
+		/* Apply the geometry instantly */
 		resize(c, (struct wlr_box){.x = center_x, .y = center_y, .width = custom_w, .height = custom_h}, 0);
 	}
 	/* ------------------------------ */
